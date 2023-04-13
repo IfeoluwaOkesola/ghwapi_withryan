@@ -21,8 +21,14 @@ hackathons = {
 def hello_ghw():
     return "<p>Hello, API Ifeoluwa!</p>"
 
-@app.route('/getHackathons', methods=['GET'])
+@app.route('/hackathons', methods=['GET'])
 def getHackathons():
-    return hackathons
+    if request.method == 'POST':
+        hackathons["New Hackathon"] = request.json
+        return hackathons
+    else:
+        return hackathons
+
+
 
 if __name__=="__main__":app.run(debug = True)
